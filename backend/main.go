@@ -2,12 +2,12 @@ package main
 
 import (
 	"flag"
-	"github.com/labstack/echo/middleware"
 	"net"
 	"net/http"
 	"os"
 
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	"github.com/sirupsen/logrus"
 )
 
