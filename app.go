@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 )
 
@@ -28,4 +29,8 @@ func (a *App) Greet(name string) string {
 
 func (a *App) Hello(name string) string {
 	return fmt.Sprintf("Hello %s, It's show time!", name)
+}
+
+func (a *App) HelloErr(name string) (string, error) {
+	return "", errors.New("test")
 }

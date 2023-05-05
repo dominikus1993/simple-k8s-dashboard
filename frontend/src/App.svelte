@@ -1,27 +1,38 @@
 <script lang="ts">
-  import logo from './assets/images/logo-universal.png'
-  import {Greet, Hello} from '../wailsjs/go/main/App.js'
+  import logo from "./assets/images/logo-universal.png";
+  import { Greet, HelloErr } from "../wailsjs/go/main/App.js";
 
-  let resultText: string = "Please enter your name below 👇"
-  let name: string
+  let resultText: string = "Please enter your name below 👇";
+  let errorText: string = "";
+  let name: string;
 
   async function greet(): Promise<void> {
-    const result = await Greet(name);
-    resultText = result;
+    try {
+      const result = await HelloErr(name);
+      resultText = result;
+    } catch (error) {
+      errorText = error;
+    }
   }
 </script>
 
 <main>
-  <img alt="Wails logo" id="logo" src="{logo}">
+  <img alt="Wails logo" id="logo" src={logo} />
+  <div class="result" id="result-err">{errorText}</div>
   <div class="result" id="result">{resultText}</div>
   <div class="input-box" id="input">
-    <input autocomplete="off" bind:value={name} class="input" id="name" type="text"/>
+    <input
+      autocomplete="off"
+      bind:value={name}
+      class="input"
+      id="name"
+      type="text"
+    />
     <button class="btn" on:click={greet}>Greet</button>
   </div>
 </main>
 
 <style>
-
   #logo {
     display: block;
     width: 50%;
@@ -76,5 +87,4 @@
     border: none;
     background-color: rgba(255, 255, 255, 1);
   }
-
 </style>

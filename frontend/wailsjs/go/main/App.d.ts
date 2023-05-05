@@ -4,3 +4,5 @@
 export function Greet(arg1:string):Promise<string>;
 
 export function Hello(arg1:string):Promise<string>;
+
+export function HelloErr(arg1:string):Promise<string>;
