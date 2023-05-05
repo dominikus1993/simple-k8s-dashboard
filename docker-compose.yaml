@@ -1,3 +1,0 @@
-services:
-  my-extension:
-    image: ${DESKTOP_PLUGIN_IMAGE}
