@@ -1,12 +1,13 @@
 <script lang="ts">
   import logo from './assets/images/logo-universal.png'
-  import {Greet} from '../wailsjs/go/main/App.js'
+  import {Greet, Hello} from '../wailsjs/go/main/App.js'
 
   let resultText: string = "Please enter your name below 👇"
   let name: string
 
-  function greet(): void {
-    Greet(name).then(result => resultText = result)
+  async function greet(): Promise<void> {
+    const result = await Greet(name);
+    resultText = result;
   }
 </script>
 
