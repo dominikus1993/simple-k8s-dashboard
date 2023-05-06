@@ -1,35 +1,41 @@
 <script lang="ts">
   import logo from "./assets/images/logo-universal.png";
-  import { Greet, HelloErr } from "../wailsjs/go/main/App.js";
+  import { Greet, Hello } from "../wailsjs/go/main/App.js";
 
-  let resultText: string = "Please enter your name below 👇";
-  let errorText: string = "";
-  let name: string;
+  let namespaces: string[] = []
+  let columns = ["name"]
 
+  
   async function greet(): Promise<void> {
     try {
-      const result = await HelloErr(name);
-      resultText = result;
+      const result = await Hello("sd");
+      namespaces = result;
     } catch (error) {
-      errorText = error;
+      alert(error)
     }
   }
 </script>
 
 <main>
   <img alt="Wails logo" id="logo" src={logo} />
-  <div class="result" id="result-err">{errorText}</div>
-  <div class="result" id="result">{resultText}</div>
   <div class="input-box" id="input">
-    <input
-      autocomplete="off"
-      bind:value={name}
-      class="input"
-      id="name"
-      type="text"
-    />
     <button class="btn" on:click={greet}>Greet</button>
   </div>
+  <table>
+    <tr>
+      {#each columns as column}
+        <th>{column}</th>
+      {/each}
+    </tr>
+    
+    {#each namespaces as row}
+      <tr>
+        {#each row as cell}
+        <td contenteditable="false" bind:innerHTML={cell} />
+        {/each}
+      </tr>
+    {/each}
+  </table>
 </main>
 
 <style>
