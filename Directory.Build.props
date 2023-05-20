@@ -7,7 +7,5 @@
       <EnableNETAnalyzers>true</EnableNETAnalyzers>
       <AnalysisMode>AllEnabledByDefault</AnalysisMode>
       <AnalysisLevel>latest</AnalysisLevel>
-      <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-      <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
 </Project>
