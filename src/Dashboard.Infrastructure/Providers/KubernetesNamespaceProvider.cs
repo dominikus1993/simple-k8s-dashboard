@@ -7,16 +7,9 @@ namespace Dashboard.Infrastructure.Providers;
 
 internal sealed class KubernetesNamespaceProvider : INamespaceProvider
 {
-    private readonly IKubernetes _kubernetes;
-
-    public KubernetesNamespaceProvider(IKubernetes kubernetes)
+    public async IAsyncEnumerable<Namespace> GetNamespaces(IKubernetes client, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        _kubernetes = kubernetes;
-    }
-
-    public async IAsyncEnumerable<Namespace> GetNamespaces([EnumeratorCancellation] CancellationToken cancellationToken = default)
-    {
-        var namespaces = await _kubernetes.CoreV1.ListNamespaceAsync(cancellationToken: cancellationToken);
+        var namespaces = await client.CoreV1.ListNamespaceAsync(cancellationToken: cancellationToken);
 
         if (namespaces?.Items is not {Count:>0})
         {
