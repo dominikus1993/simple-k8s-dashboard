@@ -2,9 +2,9 @@ using k8s;
 
 namespace Dashboard.Core.Providers;
 
-public sealed record Namespace(string Name);
+public sealed record KubernetesNamespace(string Name);
 
 public interface INamespaceProvider
 {
-    IAsyncEnumerable<Namespace> GetNamespaces(IKubernetes client, CancellationToken cancellationToken = default);
+    IAsyncEnumerable<KubernetesNamespace> GetNamespaces(IKubernetes client, CancellationToken cancellationToken = default);
 }
